@@ -916,9 +916,13 @@ select.form-control option {
 }
 
 input[type="date"].form-control {
+  display: block;
   width: 100%;
   max-width: 100%;
+  min-width: 0;
   box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .form-control:focus {
