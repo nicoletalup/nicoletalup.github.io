@@ -1264,7 +1264,7 @@ textarea.form-control {
 footer {
   background: rgba(11, 19, 26, 0.95);
   border-top: 1px solid var(--border-glass);
-  padding: 40px 0;
+  padding: 40px 20px;
   text-align: center;
 }
 
@@ -1272,7 +1272,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
 }
 
 .footer-logo {
@@ -1292,7 +1292,11 @@ footer {
 
 .footer-links {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 24px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .footer-links a {
@@ -1300,6 +1304,7 @@ footer {
   text-decoration: none;
   font-size: 0.9rem;
   transition: var(--transition);
+  white-space: nowrap;
 }
 
 .footer-links a:hover {
@@ -1309,6 +1314,10 @@ footer {
 .footer-copy {
   font-size: 0.85rem;
   color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
 /* Responsive Breakpoints */
