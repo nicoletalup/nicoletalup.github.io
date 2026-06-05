@@ -23,10 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2. Typing Effect for Hero
   const typedTextSpan = document.getElementById("typed-text");
   const textArray = [
-    "Sănătatea plămânilor tăi este misiunea mea.",
-    "Prevenție, diagnostic și tratament de specialitate.",
+    "Sănătatea plămânilor tăi, misiunea mea.",
+    "Diagnostic și tratament de specialitate.",
     "Fiecare respirație contează.",
-    "Suport medical empatic și profesionist.",
+    "Suport medical empatic și profesionist."
   ];
   const typingSpeed = 70;
   const erasingSpeed = 40;
