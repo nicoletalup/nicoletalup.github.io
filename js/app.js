@@ -110,6 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalOverlay = document.getElementById("modal-overlay");
   const closeModalBtn = document.getElementById("close-modal");
   const modalMsg = document.getElementById("modal-msg");
+  const modalContent = modalOverlay.querySelector(".modal-content");
+  const modalIcon = modalOverlay.querySelector(".modal-icon");
+  const modalTitle = modalOverlay.querySelector("h3");
 
   // EmailJS Credentials Configuration
   // To receive real emails, Dr. Nicoleta Lup needs to create a free account on emailjs.com,
@@ -144,6 +147,21 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
+  // Display success/error popup modal in portfolio theme
+  const showModal = (type, title, message) => {
+    modalContent.classList.remove("modal-success", "modal-error");
+    if (type === "success") {
+      modalContent.classList.add("modal-success");
+      modalIcon.innerHTML = `<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`;
+    } else {
+      modalContent.classList.add("modal-error");
+      modalIcon.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+    }
+    modalTitle.textContent = title;
+    modalMsg.innerHTML = message;
+    modalOverlay.classList.add("active");
+  };
+
   appointmentForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -173,13 +191,12 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.disabled = true;
     submitBtn.textContent = "Se trimite...";
 
-    // Define success display
-    const showSuccess = () => {
-      // Populate success message securely
-      modalMsg.innerHTML = `Stimate(ă) <strong>${escapedName}</strong>, solicitarea dumneavoastră pentru serviciul <strong>${serviceName}</strong> programată pe data de <strong>${formattedDate}</strong>, în intervalul <strong>${timeName}</strong>, a fost înregistrată. <br><br>Dr. Nicoleta Lup vă va contacta la numărul de telefon furnizat pentru confirmarea finală.`;
-
-      // Show Modal
-      modalOverlay.classList.add("active");
+    const handleSuccess = () => {
+      showModal(
+        "success",
+        "Solicitare Trimisă!",
+        `Stimate(ă) <strong>${escapedName}</strong>, solicitarea dumneavoastră pentru serviciul <strong>${serviceName}</strong> programată pe data de <strong>${formattedDate}</strong>, în intervalul <strong>${timeName}</strong>, a fost înregistrată. <br><br>Dr. Nicoleta Lup vă va contacta la numărul de telefon furnizat pentru confirmarea finală.`
+      );
 
       // Reset Form and restore button
       appointmentForm.reset();
@@ -207,12 +224,14 @@ document.addEventListener("DOMContentLoaded", () => {
       emailjs
         .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
         .then(() => {
-          showSuccess();
+          handleSuccess();
         })
         .catch((error) => {
           console.error("EmailJS Error:", error);
-          alert(
-            "Ne cerem scuze! A apărut o eroare la trimiterea programării. Vă rugăm să încercați din nou sau să ne contactați telefonic la (+40) 757 796 362.",
+          showModal(
+            "error",
+            "Eroare Programare",
+            "Ne cerem scuze! A apărut o eroare la trimiterea programării. Vă rugăm să încercați din nou sau să ne contactați telefonic la <strong>(+40) 757 796 362</strong>."
           );
 
           submitBtn.disabled = false;
@@ -224,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "EmailJS is not configured yet. Simulating mail transmission...",
       );
       setTimeout(() => {
-        showSuccess();
+        handleSuccess();
       }, 1200);
     }
   });

@@ -75,7 +75,7 @@
       <div class="hero-content">
         <h2>Medic Specialist Pneumolog</h2>
         <h1>Dr. Nicoleta Lup</h1>
-        <h2 style="font-size: 1.5rem; color: var(--text-secondary); margin-bottom: 20px; font-weight: 400;">
+        <h2 class="hero-subtitle">
           <span class="typing-text" id="typed-text"></span>
         </h2>
         <p class="hero-desc">
@@ -350,8 +350,15 @@
           </div>
 
           <div class="form-group">
-            <label for="message">Mesaj Suplimentar (Opțional)</label>
-            <textarea id="message" class="form-control" placeholder="Menționați pe scurt simptomele sau motivul vizitei..."></textarea>
+            <label for="message">Mesaj Suplimentar / Simptome</label>
+            <textarea id="message" class="form-control" placeholder="Menționați pe scurt simptomele sau motivul vizitei..." required></textarea>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="gdpr" class="form-checkbox" required>
+            <label for="gdpr" class="checkbox-label">
+              Sunt de acord cu prelucrarea datelor mele medicale și cu caracter personal în scopul efectuării programării, conform <a href="politica-de-confidentialitate.html" target="_blank" class="policy-link">Politicii de Confidențialitate</a>.
+            </label>
           </div>
 
           <div class="form-submit-wrap">
@@ -450,6 +457,7 @@
         <a href="#services">Servicii</a>
         <a href="#career">Carieră</a>
         <a href="#contact">Contact</a>
+        <a href="politica-de-confidentialitate.html">Confidențialitate</a>
       </div>
       <p class="footer-copy">&copy; 2026 Dr. Nicoleta Lup. Toate drepturile rezervate. Creat pentru sănătatea respirației tale.</p>
     </div>
